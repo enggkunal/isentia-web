@@ -1,0 +1,9 @@
+.navbar {
+	background-color: #0275d8;
+}
+
+.navbar-header a {
+	color: #FFF;
+	font-size: 14px;
+	font-weight: bold;
+}

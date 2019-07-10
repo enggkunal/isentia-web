@@ -1,0 +1,69 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<form class="" [formGroup]="searchForm" (ngSubmit)="getPhotos()">
+				<div class="input-group">
+					<input type="text" class="form-control"  formControlName="q" placeholder="Search">
+					<div class="input-group-btn">
+						<button class="btn btn-default" type="submit" ><i class="glyphicon glyphicon-search"></i></button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div  *ngIf="photos">
+		<div class="row">
+		<div class="col-md-12">	
+			<div class="row paginationNew">
+				 <!-- pager -->
+	            <ul  class="pagination">
+	                <li [ngClass]="{disabled:photos.photos.page === 1}">
+	                    <a (click)="getPhotos(1)">First</a>
+	                </li>
+	                <li [ngClass]="{disabled:photos.photos.page === 1}">
+	                    <a (click)="getPhotos(photos.photos.page - 1)">Previous</a>
+	                </li>
+	                <li *ngFor="let page of createRange(photos.photos.page, photos.photos.pages)" [ngClass]="{active:photos.photos.page === page}">
+	                    <a (click)="getPhotos(page)">{{page}}</a>
+	                </li>
+	                <li [ngClass]="{disabled:photos.photos.page === photos.photos.page.pages}">
+	                    <a (click)="getPhotos(photos.photos.page + 1)">Next</a>
+	                </li>
+	                <li [ngClass]="{disabled:photos.photos.page === photos.photos.pages}">
+	                    <a (click)="getPhotos(photos.photos.pages)">Last</a>
+	                </li>
+	            </ul>
+			</div>
+		</div>
+		    <div class="col-md-3 sm-12 rowImage" *ngFor="let photo of photos.photos.photo">
+		    	<img src="http://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}.jpg" alt="No image" />	
+		    </div>
+		</div>
+		<div class="clearfix">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+		<div class="row paginationNew">
+			<div class="col-md-12">
+			 <!-- pager -->
+            <ul  class="pagination">
+                <li [ngClass]="{disabled:photos.photos.page === 1}">
+                    <a (click)="getPhotos(1)">First</a>
+                </li>
+                <li [ngClass]="{disabled:photos.photos.page === 1}">
+                    <a (click)="getPhotos(photos.photos.page - 1)">Previous</a>
+                </li>
+                <li *ngFor="let page of createRange(photos.photos.page, photos.photos.pages)" [ngClass]="{active:photos.photos.page === page}">
+                    <a (click)="getPhotos(page)">{{page}}</a>
+                </li>
+                <li [ngClass]="{disabled:photos.photos.page === photos.photos.page.pages}">
+                    <a (click)="getPhotos(photos.photos.page + 1)">Next</a>
+                </li>
+                <li [ngClass]="{disabled:photos.photos.page === photos.photos.pages}">
+                    <a (click)="getPhotos(photos.photos.pages)">Last</a>
+                </li>
+            </ul>
+        	</div>
+		</div>
+		<div class="clearfix">&nbsp;</div>
+		<div class="clearfix">&nbsp;</div>
+	  </div>
+</div>
